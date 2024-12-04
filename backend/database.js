@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import { query } from 'express'
 
 dotenv.config()
-
+// console.log(process.env, "process")
 export const pool=mysql.createPool({
     
     host:process.env.MYSQL_HOST,
@@ -91,7 +91,7 @@ export async function buildSegmentQuery(segmentName){
         GROUP BY 
             c.id   
     `;
-    console.log(cal,"cal")
+    // console.log(cal,"cal")
 // conditions=id,name,json   array of objects
 //json conditions[0].conditions_json
 // total_spending>10000

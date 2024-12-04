@@ -6,7 +6,7 @@ import axios from 'axios';
 interface Campaign {
   campaign_id: number;
   segment_id: number;
-  message: string;
+  messages: string;
   created_at: string;
 }
 
@@ -112,7 +112,7 @@ const CampaignTable = () => {
             <tr key={campaign.campaign_id} className="border-b">
               <td className="px-4 py-2">{campaign.campaign_id}</td>
               <td className="px-4 py-2">{campaign.segment_id}</td>
-              <td className="px-4 py-2">{campaign.message}</td>
+              <td className="px-4 py-2">{campaign.messages}</td>
               <td className="px-4 py-2">{campaign.created_at}</td>
             </tr>
           ))}
