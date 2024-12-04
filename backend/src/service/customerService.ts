@@ -6,7 +6,7 @@ export async function getCustomers() {
     return customerRepository.getCustomers();
 }
 
-export async function getCustomerById(id:number) {           //get data from id
+export async function getCustomerById(id) {
     return customerRepository.getCustomerById(id);
     
 }

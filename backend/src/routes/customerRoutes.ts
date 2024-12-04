@@ -1,18 +1,20 @@
 import express from 'express'
 import { getCustomers ,getCustomerById,createNewCustomer} from '../service/customerService';
+import  checkRoles  from '../middleware/validateRole';
+import  verifyToken  from '../middleware/verifytoken'
 const router=express.Router();
-router.get("/", async (req,res) =>{
+router.get("/", verifyToken, checkRoles(["customer-reader"]),async (req,res) =>{
     const cust=await getCustomers()
     res.json(cust)
 })
-router.get("/:id", async (req,res) =>{ 
+router.get("/:id", verifyToken, checkRoles(["customer-reader"]),async (req,res) =>{ 
     const id=req.params.id
     const byId=await getCustomerById(id)
     res.send(byId)
 });
-router.post("/add",async(req,res)=>{
+router.post("/add",verifyToken, checkRoles(["customer-write"]),async(req,res)=>{
     const {name,email,phone,address}= req.body
     const newCust=await createNewCustomer(name,email,phone,address)
     res.status(201).send(newCust)
 })
-module.exports=router;
+export default router;

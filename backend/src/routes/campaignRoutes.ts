@@ -1,13 +1,14 @@
 import express from 'express'
 import {pool} from '../database'
 import { getCampaigns,getCampaignById,createCampaignSegments } from '../service/campaignService';
-
+import  checkRoles  from '../middleware/validateRole';
+import  verifyToken  from '../middleware/verifytoken';
 const router=express.Router();
-router.get("/campaigns", async (req,res) =>{
+router.get("/campaigns",verifyToken, checkRoles(["campaign-reader"]), async (req,res) =>{
     const cam=await getCampaigns()
     res.json(cam)
 })
-router.get("/campaigns/:segment_id",async(req,res)=>{
+router.get("/campaigns/:segment_id",verifyToken, checkRoles(["campaign-reader"]),async(req,res)=>{
     const seg=req.params.segment_id
     const segId=await getCampaignById(seg)
     res.send(segId)
@@ -42,3 +43,5 @@ router.get('/segment/:segmentName', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+export default router;
