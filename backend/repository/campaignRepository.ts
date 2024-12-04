@@ -1,6 +1,7 @@
-export async function createCampaignSegments(segmentName){
+import {pool} from '../database'
+async function createCampaignSegments(segmentName){
     // Fetch conditions for the segment
-    const [conditions] = await pool.query(
+    const [conditions]:any = await pool.query(
         'SELECT * FROM audience_conditions WHERE segment_name = ? ORDER BY id',
         [segmentName]
     );
@@ -35,7 +36,7 @@ console.log(finalQuery,"final")
 return finalQuery
 };
 
-export async function getCampaignById(segment_id) {
+async function getCampaignById(segment_id) {
     const [rows]= await pool.query(`
         SELECT *
         FROM campaignTable
@@ -45,8 +46,9 @@ export async function getCampaignById(segment_id) {
     return rows
 }
 
-export async function getCampaigns() {       //get complete table
+async function getCampaigns() {       //get complete table
     const [y]= await pool.query("SELECT * FROM campaignTable")
     console.log(y)
     return y;
 }
+export default {getCampaigns,getCampaignById,createCampaignSegments}

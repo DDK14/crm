@@ -1,9 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import customerRoutes from './routes/customerRoutes.js'
-import orderRoutes from './routes/orderRoutes.js'
-import campaignRoutes from './routes/campaignRoutes.js'
-import {getOut,get1,createNew,get2,getOrder,getCamps,createNewOrder,buildSegmentQuery,pool,camps} from './database.js'
+import customerRoutes from './routes/campaignRoutes.ts'
+import orderRoutes from './routes/orderRoutes.ts'
+import campaignRoutes from './routes/campaignRoutes.ts'
+import {pool} from './database.js'
 const app= express()
 
 app.use(cors());     //to accept api requests

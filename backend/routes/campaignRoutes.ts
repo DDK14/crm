@@ -1,5 +1,6 @@
 import express from 'express'
-import { createCampaignSegments, getCampaignById, getCampaigns } from '../repository/campaignRepository';
+import {pool} from '../database'
+import { getCampaigns,getCampaignById,createCampaignSegments } from '../service/campaignService';
 
 const router=express.Router();
 router.get("/campaigns", async (req,res) =>{

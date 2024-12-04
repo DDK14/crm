@@ -1,6 +1,5 @@
 import express from 'express'
-import { createNewOrder, getOrderById, getOrders } from '../repository/orderRepository'
-
+import { getOrders,getOrderById,createNewOrder} from '../service/orderService'
 
 const router=express.Router()
 router.get("/orders", async (req,res) =>{

@@ -1,10 +1,10 @@
-
-export async function getCustomers() {       //get complete table
+import {pool} from '../database'
+async function getCustomers() {       //get complete table
     const [rows]= await pool.query("SELECT * FROM customer")
     return rows;
 }
 
-export async function getCustomerById(id) {           //get data from id
+ async function getCustomerById(id) {           //get data from id
     const [rows]= await pool.query(`
         SELECT *
         FROM customer
@@ -15,8 +15,8 @@ export async function getCustomerById(id) {           //get data from id
     
 }
 
-export async function createNewCustomer(name,email,phone,address) {
-    const result=await pool.query(`
+ async function createNewCustomer(name,email,phone,address) {
+    const [result]: any=await pool.query(`
         INSERT INTO customer(name,email,phone,address)
         VALUES(?,?,?,?)
         `,[name,email,phone,address]
@@ -24,3 +24,5 @@ export async function createNewCustomer(name,email,phone,address) {
     const id=result.insertId
     return getCustomerById(id)
 }
+
+export default {getCustomers,getCustomerById,createNewCustomer}
