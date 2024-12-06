@@ -1,6 +1,7 @@
 import {pool} from '../database'
 async function getCustomers() {       //get complete table
     const [rows]= await pool.query("SELECT * FROM customer")
+    console.log(rows,"rows")
     return rows;
 }
 

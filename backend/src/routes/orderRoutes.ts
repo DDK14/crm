@@ -1,7 +1,8 @@
 import express from 'express'
 import { getOrders,getOrderById,createNewOrder} from '../service/orderService'
 import  checkRoles  from '../middleware/validateRole';
-import  verifyToken  from '../middleware/verifytoken';
+import  verifyToken  from '../middleware/verifyToken';
+
 const router=express.Router()
 router.get("/orders", verifyToken, checkRoles(["order-reader"]) ,async (req,res) =>{
     const ord=await getOrders()

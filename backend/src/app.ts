@@ -10,10 +10,11 @@ app.use(cors());     //to accept api requests
 
 app.use(express.json())
 
-console.log("called123")
+
 
 
 app.use('/customer',customerRoutes)
+
 app.use('/orders',orderRoutes)
 app.use('/campaign',campaignRoutes)
 

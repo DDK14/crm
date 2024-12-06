@@ -1,9 +1,22 @@
 'use client'
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import CustomerTable from './customerTable';
 import OrderTable from './orderTable';
+import keycloak from './keycloak/index';
 
 const App = () => {
+  const [, setAuthenticated] = useState(false);
+
+useEffect(() => {
+  keycloak.init({ onLoad: 'login-required' }).then(auth => {
+    if (auth) {
+      localStorage.setItem('token', keycloak.token!);
+      localStorage.setItem('refreshToken', keycloak.refreshToken!);
+      setAuthenticated(true);
+    }
+  });
+}, []);
+
   return (
     
     <div className="container mx-auto p-6">

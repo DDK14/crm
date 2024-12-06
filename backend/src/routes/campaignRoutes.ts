@@ -2,7 +2,7 @@ import express from 'express'
 import {pool} from '../database'
 import { getCampaigns,getCampaignById,createCampaignSegments } from '../service/campaignService';
 import  checkRoles  from '../middleware/validateRole';
-import  verifyToken  from '../middleware/verifytoken';
+import  verifyToken  from '../middleware/verifyToken';
 const router=express.Router();
 router.get("/campaigns",verifyToken, checkRoles(["campaign-reader"]), async (req,res) =>{
     const cam=await getCampaigns()
